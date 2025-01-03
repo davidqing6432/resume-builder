@@ -1,0 +1,17 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #aceace;
+  padding: 2rem;
+}
+
+.builder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.visualizer {
+  width: 8.5in;
+  background-color: #fff;
+}

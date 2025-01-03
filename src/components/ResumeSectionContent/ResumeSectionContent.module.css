@@ -1,0 +1,8 @@
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bullets {
+  list-style-position: inside;
+}

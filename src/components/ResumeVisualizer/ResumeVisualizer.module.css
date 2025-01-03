@@ -1,0 +1,19 @@
+.resume {
+  width: 8.5in;
+  min-height: 11in;
+  padding: 0.5in;
+  background-color: #fff;
+  font-size: 11pt;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media print {
+  @page {
+    size: letter;
+  }
+  .resume {
+    transform: none !important;
+  }
+}

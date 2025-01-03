@@ -1,15 +1,16 @@
 import { UUID } from "crypto";
 
 export type Experience = {
-  id?: UUID;
+  id: UUID;
   organization: string;
   role: string;
   start_date: Date;
   end_date: Date;
   location: string;
   information: string[];
-}
+};
 
+// TODO: Refactor to use Tables from supabase types. 
 export type DatabaseExperience = {
   id?: UUID;
   user_id?: UUID;
@@ -19,11 +20,13 @@ export type DatabaseExperience = {
   end_date: string;
   location: string;
   information: string[];
-}
+};
 
-export function databaseToExperience(experience: DatabaseExperience): Experience {
+export function databaseToExperience(
+  experience: DatabaseExperience
+): Experience {
   return {
-    id: experience.id,
+    id: experience.id!,
     organization: experience.organization,
     role: experience.role,
     start_date: new Date(experience.start_date),
@@ -33,7 +36,9 @@ export function databaseToExperience(experience: DatabaseExperience): Experience
   };
 }
 
-export function experienceToDatabase(experience: Experience): DatabaseExperience {
+export function experienceToDatabase(
+  experience: Experience
+): DatabaseExperience {
   return {
     id: experience.id,
     organization: experience.organization,
