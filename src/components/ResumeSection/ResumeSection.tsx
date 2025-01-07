@@ -1,6 +1,6 @@
 "use client";
 
-import ResumeSectionContent from "../ResumeSectionContent/ResumeSectionContent";
+import ResumeSectionContent from "./ResumeSectionContent/ResumeSectionContent";
 import styles from "./ResumeSection.module.css";
 import { Experience } from "@/utils/experience/types";
 
