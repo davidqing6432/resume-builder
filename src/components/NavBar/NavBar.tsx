@@ -5,7 +5,9 @@ import styles from "./NavBar.module.css";
 
 export default async function NavBar() {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <nav className={styles.nav}>
       <ul className={styles.items}>
@@ -15,10 +17,16 @@ export default async function NavBar() {
         {user ? (
           <>
             <li className={styles.listItem}>
-              <Link href="/profile">Profile</Link>
+              <Link href="/experiences">Experiences</Link>
             </li>
             <li className={styles.listItem}>
-              <Link href="/resume">View Resume</Link>
+              <Link href="/builder">Build</Link>
+            </li>
+            <li className={styles.listItem}>
+              <Link href="/sections">Sections</Link>
+            </li>
+            <li className={styles.listItem}>
+              <Link href="/resume">Resume</Link>
             </li>
             <li className={styles.listItem}>
               <LogoutButton />

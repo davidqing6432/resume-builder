@@ -16,26 +16,28 @@ export default function ResumeVisualizer({
   const visualizerRef = useRef<HTMLDivElement>(null);
   const printFunction = useReactToPrint({ contentRef: resumeRef });
   // px to inches is 96:1
-  const visualizerWidthIn = (visualizerRef.current?.offsetWidth || 0) / 96;
-  const visualizerHeightIn = (visualizerRef.current?.offsetHeight || 0) / 96;
-  const resumeWidthIn = (resumeRef.current?.offsetWidth || 0) / 96;
-  const resumeHeightIn = (resumeRef.current?.offsetHeight || 0) / 96;
 
   // fit resume to visualizer
-  useEffect(() => {
-    console.log(
-      visualizerWidthIn,
-      visualizerHeightIn,
-      resumeWidthIn,
-      resumeHeightIn
-    );
-    const widthScale = visualizerWidthIn / resumeWidthIn;
-    const heightScale = visualizerHeightIn / resumeHeightIn;
+  const handleScale = () => {
+    const visualizerWidth = visualizerRef.current?.offsetWidth || 0;
+    const visualizerHeight = visualizerRef.current?.offsetHeight || 0;
+    const resumeWidth = resumeRef.current?.offsetWidth || 0;
+    const resumeHeight = resumeRef.current?.offsetHeight || 0;
+    const widthScale = visualizerWidth / resumeWidth;
+    const heightScale = visualizerHeight / resumeHeight;
     resumeRef.current!.style.transform = `scale(${Math.min(
       widthScale,
       heightScale
     )}) translate(-50%, -50%)`;
-  }, [visualizerWidthIn, visualizerHeightIn, resumeWidthIn, resumeHeightIn]);
+  };
+
+  useEffect(() => {
+    const observer = new ResizeObserver(() => {
+      handleScale();
+    });
+    observer.observe(visualizerRef.current!);
+    return () => observer.disconnect();
+  });
 
   return (
     <div className={styles.visualizer} ref={visualizerRef}>
