@@ -1,0 +1,23 @@
+.container {
+  width: 100vw;
+  height: 100%;
+  background-color: #aceace;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.twoSides {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media print {
+  @page {
+    size: letter;
+  }
+  .resume {
+    transform: none !important;
+  }
+}

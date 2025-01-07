@@ -31,41 +31,6 @@ export default function ResumeSection({
   return (
     <section className={styles.container}>
       <ToolModal section={section} moveFunction={moveFunction} />
-      {/* <div className={styles.flex}>
-        <p>
-          <strong>{section.organization}</strong>
-        </p>
-        <p>
-          <strong>
-            {section.start_date.toLocaleDateString("en-US", {
-              // day: "numeric",
-              month: "short",
-              year: "numeric",
-              timeZone: "UTC",
-            }) +
-              " - " +
-              section.end_date.toLocaleDateString("en-US", {
-                // day: "numeric",
-                month: "short",
-                year: "numeric",
-                timeZone: "UTC",
-              })}
-          </strong>
-        </p>
-      </div>
-      <div className={styles.flex}>
-        <p>{section.role}</p>
-        <p>{section.location}</p>
-      </div>
-      <div>
-        <ul>
-          {section.information.map((infoBullet, index) => (
-            <li key={index}>
-              <p>{infoBullet}</p>
-            </li>
-          ))}
-        </ul>
-      </div> */}
       <ResumeSectionContent section={section} />
     </section>
   );
