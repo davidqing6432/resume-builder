@@ -10,7 +10,7 @@ export type Experience = {
   information: string[];
 };
 
-// TODO: Refactor to use Tables from supabase types. 
+// TODO: Refactor to use Tables from supabase types.
 export type DatabaseExperience = {
   id?: UUID;
   user_id?: UUID;
@@ -47,16 +47,5 @@ export function experienceToDatabase(
     end_date: experience.end_date.toISOString(),
     location: experience.location,
     information: experience.information,
-  };
-}
-
-export function defaultDatabaseExperience(): DatabaseExperience {
-  return {
-    organization: "",
-    role: "",
-    start_date: "",
-    end_date: "",
-    location: "",
-    information: [],
   };
 }

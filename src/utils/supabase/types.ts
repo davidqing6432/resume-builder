@@ -43,6 +43,7 @@ export type Database = {
           organization: string | null
           role: string | null
           start_date: string | null
+          user_id: string
         }
         Insert: {
           end_date?: string | null
@@ -52,6 +53,7 @@ export type Database = {
           organization?: string | null
           role?: string | null
           start_date?: string | null
+          user_id: string
         }
         Update: {
           end_date?: string | null
@@ -61,6 +63,34 @@ export type Database = {
           organization?: string | null
           role?: string | null
           start_date?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      personal_info: {
+        Row: {
+          email: string | null
+          id: string
+          links: string[] | null
+          name: string | null
+          phone_number: string | null
+          user_id: string | null
+        }
+        Insert: {
+          email?: string | null
+          id?: string
+          links?: string[] | null
+          name?: string | null
+          phone_number?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          email?: string | null
+          id?: string
+          links?: string[] | null
+          name?: string | null
+          phone_number?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
