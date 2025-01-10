@@ -7,31 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  graphql_public: {
-    Tables: {
-      [_ in never]: never
-    }
-    Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      graphql: {
-        Args: {
-          operationName?: string
-          query?: string
-          variables?: Json
-          extensions?: Json
-        }
-        Returns: Json
-      }
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
-  }
   public: {
     Tables: {
       experiences: {
@@ -43,6 +18,7 @@ export type Database = {
           organization: string | null
           role: string | null
           start_date: string | null
+          type: Database["public"]["Enums"]["section_type"]
           user_id: string
         }
         Insert: {
@@ -53,6 +29,7 @@ export type Database = {
           organization?: string | null
           role?: string | null
           start_date?: string | null
+          type?: Database["public"]["Enums"]["section_type"]
           user_id: string
         }
         Update: {
@@ -63,34 +40,44 @@ export type Database = {
           organization?: string | null
           role?: string | null
           start_date?: string | null
+          type?: Database["public"]["Enums"]["section_type"]
           user_id?: string
         }
         Relationships: []
       }
       personal_info: {
         Row: {
+          city: string | null
           email: string | null
           id: string
           links: string[] | null
-          name: string | null
+          name: string
           phone_number: string | null
-          user_id: string | null
+          state: string | null
+          type: Database["public"]["Enums"]["section_type"]
+          user_id: string
         }
         Insert: {
+          city?: string | null
           email?: string | null
           id?: string
           links?: string[] | null
-          name?: string | null
+          name: string
           phone_number?: string | null
-          user_id?: string | null
+          state?: string | null
+          type?: Database["public"]["Enums"]["section_type"]
+          user_id: string
         }
         Update: {
+          city?: string | null
           email?: string | null
           id?: string
           links?: string[] | null
-          name?: string | null
+          name?: string
           phone_number?: string | null
-          user_id?: string | null
+          state?: string | null
+          type?: Database["public"]["Enums"]["section_type"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -102,7 +89,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      section_type:
+        | "experience"
+        | "personal_info"
+        | "skill"
+        | "language"
+        | "education"
     }
     CompositeTypes: {
       [_ in never]: never

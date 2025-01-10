@@ -3,8 +3,11 @@
 import ResumeSectionContent from "./ResumeSectionContent/ResumeSectionContent";
 import styles from "./ResumeSection.module.css";
 import { Experience } from "@/utils/experience/types";
+import Link from "next/link";
 
-function ToolModal({
+// TODO: poor design here. Adjust to be easier to understand.
+
+function VisualizerToolModal({
   section,
   moveFunction,
 }: {
@@ -21,7 +24,7 @@ function ToolModal({
 }
 
 // TODO: Replace with all types
-export default function ResumeSection({
+export function ResumeVisualizerSection({
   section,
   moveFunction,
 }: {
@@ -30,7 +33,26 @@ export default function ResumeSection({
 }) {
   return (
     <section className={styles.container}>
-      <ToolModal section={section} moveFunction={moveFunction} />
+      <VisualizerToolModal section={section} moveFunction={moveFunction} />
+      <ResumeSectionContent section={section} />
+    </section>
+  );
+}
+
+// TODO: poor naming
+function SectionToolModal({ section }: { section: Experience }) {
+  return (
+    <div className={styles.modal}>
+      {/* Add correct href */}
+      <Link href="/login">Edit this section</Link>
+    </div>
+  );
+}
+
+export function EditableResumeSection({ section }: { section: Experience }) {
+  return (
+    <section className={styles.container}>
+      <SectionToolModal section={section} />
       <ResumeSectionContent section={section} />
     </section>
   );

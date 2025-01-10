@@ -3,7 +3,7 @@
 import styles from "./BuilderPageClient.module.css";
 import { Experience } from "@/utils/experience/types";
 import { useState } from "react";
-import ResumeSection from "../ResumeSection/ResumeSection";
+import { ResumeVisualizerSection } from "../ResumeSection/ResumeSection";
 import ResumeVisualizer from "../ResumeVisualizer/ResumeVisualizer";
 
 export function BuilderPageClient({
@@ -36,7 +36,11 @@ export function BuilderPageClient({
     <div className={styles.container}>
       <div className={styles.controls}>
         {unusedSections.map((section, i) => (
-          <ResumeSection key={i} section={section} moveFunction={handleMove} />
+          <ResumeVisualizerSection
+            key={i}
+            section={section}
+            moveFunction={handleMove}
+          />
         ))}
       </div>
       <ResumeVisualizer sections={usedSections} moveFunction={handleMove} />

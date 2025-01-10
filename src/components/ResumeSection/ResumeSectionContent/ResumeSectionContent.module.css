@@ -1,8 +1,21 @@
-.flex {
+.container {
+  width: 100%;
+}
+
+.space_between {
   display: flex;
   justify-content: space-between;
 }
 
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
 .bullets {
   list-style-position: inside;
+}
+
+.separator {
+  padding: 0 0.25rem;
 }

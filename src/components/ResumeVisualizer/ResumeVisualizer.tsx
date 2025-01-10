@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import styles from "./ResumeVisualizer.module.css";
 import { useReactToPrint } from "react-to-print";
 import { Experience } from "@/utils/experience/types";
-import ResumeSection from "../ResumeSection/ResumeSection";
+import { ResumeVisualizerSection } from "../ResumeSection/ResumeSection";
 
 // TODO: change from any typing to all of the section types
 export default function ResumeVisualizer({
@@ -43,7 +43,7 @@ export default function ResumeVisualizer({
     <div className={styles.visualizer} ref={visualizerRef}>
       <div className={styles.resume} ref={resumeRef}>
         {sections.map((section) => (
-          <ResumeSection
+          <ResumeVisualizerSection
             key={section.id}
             section={section}
             moveFunction={moveFunction}

@@ -1,7 +1,6 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
-import { DatabaseExperience } from "@/utils/experience/types";
 import { revalidatePath } from "next/cache";
 import { UUID } from "crypto";
 import { Tables } from "../supabase/types";
@@ -29,13 +28,6 @@ export async function fetchUserPersonalInfo(): Promise<PersonalInfo[]> {
   );
 }
 
-// export async function fetchExperiencesByUser(user_id: UUID): Promise<Experience[]> {
-//   const supabase = await createClient();
-//   const { data: experiences } = await supabase.from("experiences").select().eq("user_id", user_id);
-//   const databaseExperiences = experiences as DatabaseExperience[];
-//   return databaseExperiences.map((experience) => databaseToExperience(experience));
-// }
-
 type FormState = {
   error: string | null;
 };
@@ -47,7 +39,7 @@ export async function createPersonalInfo(
   const supabase = await createClient();
   const links: string[] = [];
   let linkIndex = 0;
-  while (formData.get(`links_${linkIndex}`) as string) {
+  while (formData.has(`links_${linkIndex}`)) {
     const link = formData.get(`links_${linkIndex}`) as string;
     if (link) links.push(link);
     linkIndex++;

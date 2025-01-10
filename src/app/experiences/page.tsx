@@ -4,7 +4,7 @@ import { fetchUserExperiences } from "@/utils/experience/actions";
 
 export default async function Experiences() {
   const parsedExperiences = await fetchUserExperiences();
-  
+
   return (
     <div>
       <h1>Your Experiences</h1>

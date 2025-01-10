@@ -2,6 +2,7 @@ import { UUID } from "crypto";
 
 export type Experience = {
   id: UUID;
+  type: "experience";
   organization: string;
   role: string;
   start_date: Date;
@@ -14,6 +15,7 @@ export type Experience = {
 export type DatabaseExperience = {
   id?: UUID;
   user_id?: UUID;
+  type: "experience";
   organization: string;
   role: string;
   start_date: string;
@@ -27,6 +29,7 @@ export function databaseToExperience(
 ): Experience {
   return {
     id: experience.id!,
+    type: experience.type!,
     organization: experience.organization,
     role: experience.role,
     start_date: new Date(experience.start_date),
@@ -41,6 +44,7 @@ export function experienceToDatabase(
 ): DatabaseExperience {
   return {
     id: experience.id,
+    type: experience.type,
     organization: experience.organization,
     role: experience.role,
     start_date: experience.start_date.toISOString(),
