@@ -2,57 +2,48 @@
 
 import ResumeSectionContent from "./ResumeSectionContent/ResumeSectionContent";
 import styles from "./ResumeSection.module.css";
-import { Experience } from "@/utils/experience/types";
 import Link from "next/link";
+import { Section } from "@/utils/section/types";
 
-// TODO: poor design here. Adjust to be easier to understand.
-
-function VisualizerToolModal({
+function ToolModal({
   section,
+  isInVisualizer,
   moveFunction,
 }: {
-  section: Experience;
-  moveFunction: (id: string) => void;
+  section: Section;
+  isInVisualizer?: boolean;
+  moveFunction?: (id: string) => void;
 }) {
   return (
     <div className={styles.modal}>
-      <button onClick={() => moveFunction(section.id)}>
-        Remove this section
-      </button>
+      {/* TODO: Is exposing the id a security hazard? */}
+      <Link href={"/sections/" + section.id}>Edit this section</Link>
+      {isInVisualizer && moveFunction && (
+        <button onClick={() => moveFunction(section.id)}>
+          Move this section
+        </button>
+      )}
+      <button>Delete this section</button>
     </div>
   );
 }
 
-// TODO: Replace with all types
-export function ResumeVisualizerSection({
+export function ResumeSection({
   section,
+  isInVisualizer,
   moveFunction,
 }: {
-  section: Experience;
-  moveFunction: (id: string) => void;
+  section: Section;
+  moveFunction?: (id: string) => void;
+  isInVisualizer?: boolean;
 }) {
   return (
     <section className={styles.container}>
-      <VisualizerToolModal section={section} moveFunction={moveFunction} />
-      <ResumeSectionContent section={section} />
-    </section>
-  );
-}
-
-// TODO: poor naming
-function SectionToolModal({ section }: { section: Experience }) {
-  return (
-    <div className={styles.modal}>
-      {/* Add correct href */}
-      <Link href="/login">Edit this section</Link>
-    </div>
-  );
-}
-
-export function EditableResumeSection({ section }: { section: Experience }) {
-  return (
-    <section className={styles.container}>
-      <SectionToolModal section={section} />
+      <ToolModal
+        section={section}
+        moveFunction={moveFunction}
+        isInVisualizer={isInVisualizer}
+      />
       <ResumeSectionContent section={section} />
     </section>
   );

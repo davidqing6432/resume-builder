@@ -21,10 +21,14 @@ export async function fetchUserExperiences(): Promise<Experience[]> {
     return [];
   }
   const userId = user.id as UUID;
-  const { data: experiences } = await supabase
+  const { data: experiences, error } = await supabase
     .from("experiences")
     .select()
     .eq("user_id", userId);
+  if (error) {
+    console.error(error);
+    return [];
+  }
   const databaseExperiences = experiences as DatabaseExperience[];
   return databaseExperiences.map((experience) =>
     databaseToExperience(experience)
@@ -57,6 +61,7 @@ export async function createExperience(
   const userId = user.id as UUID;
   const experience: DatabaseExperience = {
     user_id: userId,
+    type: "experience",
     organization: formData.get("organization")!.toString(),
     role: formData.get("role")!.toString(),
     start_date: formData.get("start_date")!.toString(),

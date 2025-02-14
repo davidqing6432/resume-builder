@@ -1,19 +1,14 @@
 "use client";
 
 import styles from "./BuilderPageClient.module.css";
-import { Experience } from "@/utils/experience/types";
 import { useState } from "react";
-import { ResumeVisualizerSection } from "../ResumeSection/ResumeSection";
+import { ResumeSection } from "../ResumeSection/ResumeSection";
 import ResumeVisualizer from "../ResumeVisualizer/ResumeVisualizer";
+import { Section } from "@/utils/section/types";
 
-export function BuilderPageClient({
-  experiences,
-}: {
-  experiences: Experience[];
-}) {
-  const [unusedSections, setUnusedSections] =
-    useState<Experience[]>(experiences);
-  const [usedSections, setUsedSections] = useState<Experience[]>([]);
+export function BuilderPageClient({ sections }: { sections: Section[] }) {
+  const [unusedSections, setUnusedSections] = useState<Section[]>(sections);
+  const [usedSections, setUsedSections] = useState<Section[]>([]);
 
   const handleMove = (id: string) => {
     // If in unused sections, move to used sections
@@ -36,10 +31,11 @@ export function BuilderPageClient({
     <div className={styles.container}>
       <div className={styles.controls}>
         {unusedSections.map((section, i) => (
-          <ResumeVisualizerSection
+          <ResumeSection
             key={i}
             section={section}
             moveFunction={handleMove}
+            isInVisualizer
           />
         ))}
       </div>

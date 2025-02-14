@@ -3,6 +3,7 @@ import { Experience } from "@/utils/experience/types";
 import styles from "./ResumeSectionContent.module.css";
 import { Section } from "@/utils/section/types";
 import { PersonalInfo } from "@/utils/personal_info/types";
+import { Fragment } from "react";
 
 export default function ResumeSectionContent({
   section,
@@ -24,14 +25,15 @@ function PersonalInfoContent({ section }: { section: PersonalInfo }) {
   // combine all fields that are not null with a pipe separator
   let links: React.ReactNode = [];
   if (section.links) {
-    section.links = section.links.filter((link) => link);
-    links = section.links.map((link) => {
-      return (
-        <a href={link} key={link}>
-          {link.split("//")[1]}
-        </a>
-      );
-    });
+    links = section.links
+      .filter((link) => link)
+      .map((link) => {
+        return (
+          <a href={link} key={link}>
+            {link.split("//")[1]}
+          </a>
+        );
+      });
   }
 
   const phoneUtil = PhoneNumberUtil.getInstance();
@@ -68,16 +70,14 @@ function PersonalInfoContent({ section }: { section: PersonalInfo }) {
         </p>
       </div>
       <div className={styles.centered}>
-        {contact.map((element, index) => {
-          return (
-            <>
-              <div key={index}>{element}</div>
-              {index < contact.length - 1 && (
-                <span className={styles.separator}> | </span>
-              )}
-            </>
-          );
-        })}
+        {contact.map((element, index) => (
+          <Fragment key={index}>
+            {element}
+            {index < contact.length - 1 && (
+              <span className={styles.separator}> | </span>
+            )}
+          </Fragment>
+        ))}
       </div>
     </div>
   );

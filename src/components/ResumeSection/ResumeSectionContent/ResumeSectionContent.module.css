@@ -5,11 +5,13 @@
 .space_between {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .centered {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .bullets {

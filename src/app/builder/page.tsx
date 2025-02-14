@@ -1,7 +1,7 @@
-import { fetchUserExperiences } from "@/utils/experience/actions";
 import { BuilderPageClient } from "@/components/BuilderPageClient/BuilderPageClient";
+import { fetchUserSections } from "@/utils/section/actions";
 
 export default async function BuilderPage() {
-  const experiences = await fetchUserExperiences();
-  return <BuilderPageClient experiences={experiences} />;
+  const sections = await fetchUserSections();
+  return <BuilderPageClient sections={sections} />;
 }

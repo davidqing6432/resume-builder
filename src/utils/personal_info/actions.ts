@@ -3,7 +3,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { UUID } from "crypto";
-import { Tables } from "../supabase/types";
+import { Tables, TablesInsert } from "../supabase/types";
 import { databaseToPersonalInfo, PersonalInfo } from "./types";
 
 // TODO: Functions are the same except finding user_id is integrated into fetchUserExperiences.
@@ -52,7 +52,7 @@ export async function createPersonalInfo(
     return { error: "User not found" };
   }
   const userId = user.id as UUID;
-  const toInsert: Omit<Tables<"personal_info">, "id"> = {
+  const toInsert: TablesInsert<"personal_info"> = {
     user_id: userId,
     name: formData.get("name")!.toString(),
     phone_number: formData.get("phone_number")!.toString(),
